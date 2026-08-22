@@ -5,7 +5,7 @@ import { Telescope } from "lucide-react";
 export function SiteFooter() {
   return (
     <footer className="border-t border-white/5 bg-[#040407] mt-16">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 py-14">
+      <div className="max-w-7xl mx-auto px-8 sm:px-14 lg:px-20 py-20">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
 
           {/* Brand col */}

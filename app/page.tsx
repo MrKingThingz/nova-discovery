@@ -41,7 +41,7 @@ export default async function HomePage() {
         </div>
 
         {/* Content — left aligned */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 py-28 w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-8 sm:px-14 lg:px-20 py-36 w-full">
           <div className="max-w-xl">
             {/* Eyebrow */}
             <div className="flex items-center gap-2 mb-5">
@@ -73,13 +73,13 @@ export default async function HomePage() {
             <div className="flex flex-wrap items-center gap-3">
               <Link
                 href="/blog"
-                className="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold transition-all shadow-lg shadow-purple-900/40 hover:shadow-purple-900/60"
+                className="flex items-center gap-2 px-8 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold transition-all shadow-lg shadow-purple-900/40 hover:shadow-purple-900/60"
               >
                 Explore the Blog →
               </Link>
               <Link
                 href="/categories"
-                className="flex items-center gap-2 px-6 py-2.5 rounded-lg border border-white/15 bg-white/5 hover:bg-white/10 text-white text-sm font-semibold transition-all"
+                className="flex items-center gap-2 px-8 py-3 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 text-white text-sm font-semibold transition-all"
               >
                 Browse Topics
               </Link>
@@ -92,7 +92,7 @@ export default async function HomePage() {
           FEATURE STRIP — 4 pillars
       ══════════════════════════════════════════════════ */}
       <section className="border-b border-white/5 bg-[#060608]">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10">
+        <div className="max-w-7xl mx-auto px-8 sm:px-14 lg:px-20">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/5">
             {[
               { icon: "🔭", title: "Beginner Friendly", desc: "Clear explanations for all levels of learners." },
@@ -100,7 +100,7 @@ export default async function HomePage() {
               { icon: "🪐", title: "Always Exploring", desc: "New articles regularly to fuel your curiosity." },
               { icon: "🚀", title: "Learn & Discover", desc: "Topics, guides, and resources to keep you learning." },
             ].map((item) => (
-              <div key={item.title} className="flex items-start gap-3 px-6 py-6">
+              <div key={item.title} className="flex items-start gap-3 px-8 py-8">
                 <span className="text-2xl shrink-0 mt-0.5">{item.icon}</span>
                 <div>
                   <p className="text-sm font-bold text-white mb-1">{item.title}</p>
@@ -115,7 +115,7 @@ export default async function HomePage() {
       {/* ══════════════════════════════════════════════════
           MAIN CONTENT — article grid + sidebar
       ══════════════════════════════════════════════════ */}
-      <section className="max-w-7xl mx-auto px-6 sm:px-10 py-14">
+      <section className="max-w-7xl mx-auto px-8 sm:px-14 lg:px-20 py-20">
         <div className="flex flex-col lg:flex-row gap-10">
 
           {/* ── Left: Articles ─────────────────────────── */}
@@ -209,7 +209,7 @@ export default async function HomePage() {
               </p>
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-purple-500/25 bg-purple-500/8 text-purple-400 hover:text-purple-300 hover:border-purple-500/40 text-xs font-semibold transition-all"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-purple-500/25 bg-purple-500/8 text-purple-400 hover:text-purple-300 hover:border-purple-500/40 text-xs font-semibold transition-all"
               >
                 Learn more about us →
               </Link>

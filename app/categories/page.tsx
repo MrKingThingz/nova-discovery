@@ -23,7 +23,7 @@ export default async function CategoriesPage() {
 
   return (
     <div className="min-h-screen pt-28 pb-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="site-container">
         <div className="mb-12">
           <h1 className="text-4xl font-bold text-white mb-3">Topics</h1>
           <p className="text-gray-400">Explore the universe by subject</p>

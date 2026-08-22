@@ -41,7 +41,7 @@ export default async function HomePage() {
         </div>
 
         {/* Content — left aligned */}
-        <div className="relative z-10 max-w-7xl mx-auto px-8 sm:px-14 lg:px-20 py-36 w-full">
+        <div className="relative z-10 site-container py-36 w-full">
           <div className="max-w-xl">
             {/* Eyebrow */}
             <div className="flex items-center gap-2 mb-5">
@@ -92,7 +92,7 @@ export default async function HomePage() {
           FEATURE STRIP — 4 pillars
       ══════════════════════════════════════════════════ */}
       <section className="border-b border-white/5 bg-[#060608]">
-        <div className="max-w-7xl mx-auto px-8 sm:px-14 lg:px-20">
+        <div className="site-container">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/5">
             {[
               { icon: "🔭", title: "Beginner Friendly", desc: "Clear explanations for all levels of learners." },
@@ -115,7 +115,7 @@ export default async function HomePage() {
       {/* ══════════════════════════════════════════════════
           MAIN CONTENT — article grid + sidebar
       ══════════════════════════════════════════════════ */}
-      <section className="max-w-7xl mx-auto px-8 sm:px-14 lg:px-20 py-20">
+      <section className="site-container py-20">
         <div className="flex flex-col lg:flex-row gap-10">
 
           {/* ── Left: Articles ─────────────────────────── */}

@@ -36,7 +36,7 @@ export default async function CategoryPage({ params }: Props) {
 
   return (
     <div className="min-h-screen pt-28 pb-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="site-container">
         {/* Back */}
         <Link href="/categories" className="inline-flex items-center gap-1.5 text-sm text-gray-600 hover:text-gray-300 transition-colors mb-8">
           ← All Topics

@@ -51,7 +51,7 @@ export default async function ArticlePage({ params }: Props) {
   return (
     <div className="min-h-screen pt-24 pb-20">
       {/* Article header */}
-      <header className="max-w-3xl mx-auto px-4 sm:px-6 mb-12">
+      <header className="max-w-3xl mx-auto site-container mb-12">
         {/* Back */}
         <Link href="/blog" className="inline-flex items-center gap-1.5 text-sm text-gray-600 hover:text-gray-300 transition-colors mb-8">
           ← All Articles
@@ -93,13 +93,13 @@ export default async function ArticlePage({ params }: Props) {
       </header>
 
       {/* Article body */}
-      <article className="max-w-3xl mx-auto px-4 sm:px-6 mb-16">
+      <article className="max-w-3xl mx-auto site-container mb-16">
         <MarkdownRenderer content={post.content} />
       </article>
 
       {/* Tags */}
       {post.tags.length > 0 && (
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 mb-12 flex flex-wrap gap-2">
+        <div className="max-w-3xl mx-auto site-container mb-12 flex flex-wrap gap-2">
           {post.tags.map((tag) => (
             <span key={tag} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-500">
               {tag}
@@ -110,7 +110,7 @@ export default async function ArticlePage({ params }: Props) {
 
       {/* Sources */}
       {post.source_urls.length > 0 && (
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 mb-12">
+        <div className="max-w-3xl mx-auto site-container mb-12">
           <div className="rounded-2xl bg-white/[0.03] border border-white/[0.07] p-5">
             <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Sources</p>
             <div className="flex flex-col gap-1.5">
@@ -132,7 +132,7 @@ export default async function ArticlePage({ params }: Props) {
 
       {/* YouTube embeds */}
       {post.youtube_embed_ids.length > 0 && (
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 mb-12">
+        <div className="max-w-3xl mx-auto site-container mb-12">
           <p className="text-sm font-semibold text-gray-400 mb-4">Related Videos</p>
           <div className="flex flex-col gap-4">
             {post.youtube_embed_ids.slice(0, 2).map((id) => (
@@ -151,7 +151,7 @@ export default async function ArticlePage({ params }: Props) {
 
       {/* Related posts */}
       {related.length > 0 && (
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="site-container">
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px flex-1 bg-white/5" />
             <span className="text-[11px] font-semibold text-gray-600 uppercase tracking-widest">More to Explore</span>

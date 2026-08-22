@@ -33,7 +33,7 @@ export function SiteNav() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-8 sm:px-14 lg:px-20">
+      <div className="site-container">
         <div className="flex items-center justify-between h-16">
 
           {/* Logo — left */}

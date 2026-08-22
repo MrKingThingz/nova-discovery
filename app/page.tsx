@@ -307,9 +307,9 @@ function FeaturePillar({
   desc: string;
 }) {
   return (
-    <div className="flex items-start gap-4 px-8 py-10">
+    <div className="flex items-center gap-5 px-8 py-14">
       {/* Outlined icon box */}
-      <div className="w-12 h-12 rounded-xl border border-white/10 bg-white/[0.03] flex items-center justify-center shrink-0 text-purple-400">
+      <div className="w-14 h-14 rounded-xl border border-white/10 bg-white/[0.03] flex items-center justify-center shrink-0 text-purple-400">
         {icon}
       </div>
       <div className="pt-0.5">

@@ -92,7 +92,7 @@ export default async function HomePage() {
       {/* ══════════════════════════════════════════════════
           FEATURE STRIP — 4 pillars
       ══════════════════════════════════════════════════ */}
-      <section className="bg-[#060608] py-14">
+      <section className="bg-[#060608] py-10">
         <div className="site-container">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/10 border border-white/10 rounded-2xl overflow-hidden">
             <FeaturePillar
@@ -307,7 +307,7 @@ function FeaturePillar({
   desc: string;
 }) {
   return (
-    <div className="flex items-center gap-5 px-8 py-16">
+    <div className="flex items-center gap-5 px-8 py-20">
       <div className="shrink-0 text-purple-400">
         {icon}
       </div>

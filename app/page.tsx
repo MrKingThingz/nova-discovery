@@ -27,17 +27,17 @@ export default async function HomePage() {
         {/* Full-bleed galaxy image, right-biased */}
         <div className="absolute inset-0">
           <Image
-            src="/milky-way.jpg"
+            src="/hero-milkyway.jpg"
             alt="Milky Way Galaxy"
             fill
             priority
             className="object-cover"
-            style={{ objectPosition: "70% center" }}
+            style={{ objectPosition: "center center" }}
           />
           {/* Left-to-right gradient: solid dark on left → transparent right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#080810]/90 via-[#080810]/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#080810]/85 via-[#080810]/40 to-transparent" />
           {/* Top/bottom darkening */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#080810]/40 via-transparent to-[#080810]/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#080810]/30 via-transparent to-[#080810]/60" />
         </div>
 
         {/* Content — left aligned */}

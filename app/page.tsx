@@ -35,9 +35,9 @@ export default async function HomePage() {
             style={{ objectPosition: "70% center" }}
           />
           {/* Left-to-right gradient: solid dark on left → transparent right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#080810] via-[#080810]/85 to-[#080810]/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#080810]/90 via-[#080810]/50 to-transparent" />
           {/* Top/bottom darkening */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#080810]/60 via-transparent to-[#080810]/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#080810]/40 via-transparent to-[#080810]/70" />
         </div>
 
         {/* Content — left aligned */}

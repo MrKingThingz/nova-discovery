@@ -1,4 +1,5 @@
 import React from "react";
+import { Telescope, Atom, Globe2, Rocket } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { getPublishedPosts, getCategories } from "@/lib/supabase";
@@ -94,20 +95,26 @@ export default async function HomePage() {
       <section className="border-b border-white/5 bg-[#060608]">
         <div className="site-container">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/5">
-            {[
-              { icon: "🔭", title: "Beginner Friendly", desc: "Clear explanations for all levels of learners." },
-              { icon: "⚛️", title: "Science Based", desc: "Trusted sources and proven science." },
-              { icon: "🪐", title: "Always Exploring", desc: "New articles regularly to fuel your curiosity." },
-              { icon: "🚀", title: "Learn & Discover", desc: "Topics, guides, and resources to keep you learning." },
-            ].map((item) => (
-              <div key={item.title} className="flex items-start gap-3 px-8 py-8">
-                <span className="text-2xl shrink-0 mt-0.5">{item.icon}</span>
-                <div>
-                  <p className="text-sm font-bold text-white mb-1">{item.title}</p>
-                  <p className="text-xs text-gray-600 leading-relaxed">{item.desc}</p>
-                </div>
-              </div>
-            ))}
+            <FeaturePillar
+              icon={<Telescope size={22} strokeWidth={1.5} />}
+              title="Beginner Friendly"
+              desc="Clear explanations for all levels of learners."
+            />
+            <FeaturePillar
+              icon={<Atom size={22} strokeWidth={1.5} />}
+              title="Science Based"
+              desc="Trusted sources and proven science."
+            />
+            <FeaturePillar
+              icon={<Globe2 size={22} strokeWidth={1.5} />}
+              title="Always Exploring"
+              desc="New articles regularly to fuel your curiosity."
+            />
+            <FeaturePillar
+              icon={<Rocket size={22} strokeWidth={1.5} />}
+              title="Learn & Discover"
+              desc="Topics, guides, and resources to keep you learning."
+            />
           </div>
         </div>
       </section>
@@ -285,5 +292,30 @@ function ArticleRow({
         </div>
       </article>
     </Link>
+  );
+}
+
+// ── FeaturePillar ─────────────────────────────────────────────
+
+function FeaturePillar({
+  icon,
+  title,
+  desc,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  desc: string;
+}) {
+  return (
+    <div className="flex items-start gap-4 px-8 py-10">
+      {/* Outlined icon box */}
+      <div className="w-12 h-12 rounded-xl border border-white/10 bg-white/[0.03] flex items-center justify-center shrink-0 text-purple-400">
+        {icon}
+      </div>
+      <div className="pt-0.5">
+        <p className="text-sm font-bold text-white mb-1.5">{title}</p>
+        <p className="text-xs text-gray-500 leading-relaxed">{desc}</p>
+      </div>
+    </div>
   );
 }

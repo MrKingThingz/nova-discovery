@@ -307,8 +307,8 @@ function FeaturePillar({
   desc: string;
 }) {
   return (
-    <div className="flex items-center gap-8 px-10" style={{ paddingTop: "2.25rem", paddingBottom: "2.25rem" }}>
-      <div className="shrink-0 text-purple-400 pl-4">
+    <div className="flex items-center gap-4 pl-10 pr-4" style={{ paddingTop: "2.25rem", paddingBottom: "2.25rem" }}>
+      <div className="shrink-0 text-purple-400">
         {icon}
       </div>
       <div className="pt-0.5">

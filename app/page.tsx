@@ -311,7 +311,7 @@ function FeaturePillar({
       <div className="shrink-0 text-purple-400 mt-0.5">
         {icon}
       </div>
-      <div className="min-w-0">
+      <div className="min-w-0" style={{ maxWidth: "160px" }}>
         <p className="text-sm font-bold text-white mb-1.5">{title}</p>
         <p className="text-xs text-gray-500 leading-relaxed">{desc}</p>
       </div>

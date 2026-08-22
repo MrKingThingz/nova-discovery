@@ -92,9 +92,9 @@ export default async function HomePage() {
       {/* ══════════════════════════════════════════════════
           FEATURE STRIP — 4 pillars
       ══════════════════════════════════════════════════ */}
-      <section className="border-b border-white/5 bg-[#060608]">
+      <section className="bg-[#060608] py-6">
         <div className="site-container">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/5">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/10 border border-white/10 rounded-2xl overflow-hidden">
             <FeaturePillar
               icon={<Telescope size={22} strokeWidth={1.5} />}
               title="Beginner Friendly"

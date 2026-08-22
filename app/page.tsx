@@ -307,7 +307,7 @@ function FeaturePillar({
   desc: string;
 }) {
   return (
-    <div className="flex items-center gap-5 px-8 py-10">
+    <div className="flex items-center gap-5 px-8 py-16">
       <div className="shrink-0 text-purple-400">
         {icon}
       </div>

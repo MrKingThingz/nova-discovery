@@ -94,7 +94,7 @@ export default async function HomePage() {
       ══════════════════════════════════════════════════ */}
       <section className="bg-[#060608] py-10">
         <div className="site-container">
-          <div className="grid grid-cols-2 md:grid-cols-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 items-start">
             <FeaturePillar
               icon={<Telescope size={36} strokeWidth={1.5} />}
               title="Beginner Friendly"
@@ -307,11 +307,11 @@ function FeaturePillar({
   desc: string;
 }) {
   return (
-    <div className="flex items-center gap-4 pl-10 pr-4" style={{ paddingTop: "2.25rem", paddingBottom: "2.25rem" }}>
-      <div className="shrink-0 text-purple-400">
+    <div className="flex items-start gap-4 pl-10 pr-4" style={{ paddingTop: "2.25rem", paddingBottom: "2.25rem" }}>
+      <div className="shrink-0 text-purple-400 mt-0.5">
         {icon}
       </div>
-      <div className="pt-0.5">
+      <div className="min-w-0">
         <p className="text-sm font-bold text-white mb-1.5">{title}</p>
         <p className="text-xs text-gray-500 leading-relaxed">{desc}</p>
       </div>

@@ -92,26 +92,26 @@ export default async function HomePage() {
       {/* ══════════════════════════════════════════════════
           FEATURE STRIP — 4 pillars
       ══════════════════════════════════════════════════ */}
-      <section className="bg-[#060608] py-6">
+      <section className="bg-[#060608] py-14">
         <div className="site-container">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/10 border border-white/10 rounded-2xl overflow-hidden">
             <FeaturePillar
-              icon={<Telescope size={22} strokeWidth={1.5} />}
+              icon={<Telescope size={36} strokeWidth={1.5} />}
               title="Beginner Friendly"
               desc="Clear explanations for all levels of learners."
             />
             <FeaturePillar
-              icon={<Atom size={22} strokeWidth={1.5} />}
+              icon={<Atom size={36} strokeWidth={1.5} />}
               title="Science Based"
               desc="Trusted sources and proven science."
             />
             <FeaturePillar
-              icon={<Globe2 size={22} strokeWidth={1.5} />}
+              icon={<Globe2 size={36} strokeWidth={1.5} />}
               title="Always Exploring"
               desc="New articles regularly to fuel your curiosity."
             />
             <FeaturePillar
-              icon={<Rocket size={22} strokeWidth={1.5} />}
+              icon={<Rocket size={36} strokeWidth={1.5} />}
               title="Learn & Discover"
               desc="Topics, guides, and resources to keep you learning."
             />
@@ -307,9 +307,8 @@ function FeaturePillar({
   desc: string;
 }) {
   return (
-    <div className="flex items-center gap-5 px-8 py-14">
-      {/* Outlined icon box */}
-      <div className="w-14 h-14 rounded-xl border border-white/10 bg-white/[0.03] flex items-center justify-center shrink-0 text-purple-400">
+    <div className="flex items-center gap-5 px-8 py-10">
+      <div className="shrink-0 text-purple-400">
         {icon}
       </div>
       <div className="pt-0.5">

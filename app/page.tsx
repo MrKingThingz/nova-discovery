@@ -3,184 +3,287 @@ import Link from "next/link";
 import Image from "next/image";
 import { getPublishedPosts, getCategories } from "@/lib/supabase";
 import { PostCard } from "@/components/PostCard";
-import type { Category } from "@/lib/supabase";
+import type { Category, Post } from "@/lib/supabase";
 
 export const revalidate = 60;
 
 export default async function HomePage() {
   const [posts, categories] = await Promise.all([
-    getPublishedPosts(10),
+    getPublishedPosts(20),
     getCategories(),
   ]);
 
   const categoryMap = Object.fromEntries(categories.map((c: Category) => [c.id, c]));
-  const featured = posts[0] ?? null;
-  const recent = posts.slice(1, 7);
+  const latestPosts = posts.slice(0, 3);
+  const morePosts = posts.slice(3, 9);
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-[#080810]">
 
-      {/* ═══════════════════════════════════════════════════
-          HERO — Full-viewport Milky Way banner
-      ═══════════════════════════════════════════════════ */}
-      <section className="relative w-full h-screen min-h-[600px] max-h-[900px] flex items-center justify-center overflow-hidden">
-
-        {/* Milky Way background image */}
+      {/* ══════════════════════════════════════════════════
+          HERO — split layout, text left / galaxy right
+      ══════════════════════════════════════════════════ */}
+      <section className="relative min-h-[580px] flex items-center overflow-hidden border-b border-white/5">
+        {/* Full-bleed galaxy image, right-biased */}
         <div className="absolute inset-0">
           <Image
             src="/milky-way.jpg"
-            alt="Milky Way Galaxy — our home in the cosmos"
+            alt="Milky Way Galaxy"
             fill
             priority
-            className="object-cover object-center"
-            style={{ objectPosition: "center 30%" }}
+            className="object-cover"
+            style={{ objectPosition: "70% center" }}
           />
-          {/* Multi-layer dark overlay for readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60" />
-          {/* Bottom fade to seamless black */}
-          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black to-transparent" />
+          {/* Left-to-right gradient: solid dark on left → transparent right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#080810] via-[#080810]/85 to-[#080810]/20" />
+          {/* Top/bottom darkening */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#080810]/60 via-transparent to-[#080810]/80" />
         </div>
 
-        {/* Hero content */}
-        <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
-          {/* Eyebrow */}
-          <div className="flex justify-center mb-6">
-            <div className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 backdrop-blur-sm">
+        {/* Content — left aligned */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 py-28 w-full">
+          <div className="max-w-xl">
+            {/* Eyebrow */}
+            <div className="flex items-center gap-2 mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
-              <span className="text-purple-300 text-xs font-medium tracking-[0.15em] uppercase">AI-Powered Astronomy</span>
+              <span className="text-purple-400 text-xs font-semibold tracking-[0.15em] uppercase">
+                AI-Powered Astronomy
+              </span>
             </div>
-          </div>
 
-          {/* Main headline */}
-          <h1
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[0.95] tracking-tight mb-6"
-            style={{ textShadow: "0 0 80px rgba(139,92,246,0.3), 0 4px 30px rgba(0,0,0,0.8)" }}
-          >
-            Journey Through
-            <br />
-            <span className="bg-gradient-to-r from-purple-400 via-violet-300 to-indigo-400 bg-clip-text text-transparent">
-              the Universe
-            </span>
-          </h1>
+            {/* Headline */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-[1.05] tracking-tight mb-4"
+              style={{ textShadow: "0 2px 40px rgba(0,0,0,0.8)" }}>
+              Understand the Universe.
+              <br />
+              <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
+                Explore the Unknown.
+              </span>
+            </h1>
 
-          {/* Subheading */}
-          <p
-            className="text-gray-300 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed mb-10"
-            style={{ textShadow: "0 2px 20px rgba(0,0,0,0.8)" }}
-          >
-            Deep dives into black holes, Mars missions, relativity, and the latest
-            discoveries — written by NOVA, your AI guide to the cosmos.
-          </p>
+            {/* Tagline */}
+            <p className="text-purple-300/70 font-semibold text-base mb-2 tracking-wide">
+              Science. Curiosity. Wonder.
+            </p>
+            <p className="text-gray-400 text-base leading-relaxed mb-8 max-w-sm">
+              Deep dives into black holes, Mars missions, and the science that bends the mind — written by NOVA AI.
+            </p>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link
-              href="/blog"
-              className="px-8 py-3.5 rounded-full bg-purple-600 hover:bg-purple-500 text-white font-semibold transition-all shadow-2xl shadow-purple-900/50 hover:shadow-purple-900/70 hover:scale-[1.02] active:scale-[0.98]"
-            >
-              Explore Articles →
-            </Link>
-            <Link
-              href="/categories"
-              className="px-8 py-3.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/30 text-white font-semibold transition-all"
-            >
-              Browse Topics
-            </Link>
-          </div>
-
-          {/* Scroll indicator */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-            <div className="flex flex-col items-center gap-2 text-white/30">
-              <span className="text-[10px] tracking-widest uppercase">Scroll</span>
-              <div className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent animate-pulse" />
+            {/* CTAs */}
+            <div className="flex flex-wrap items-center gap-3">
+              <Link
+                href="/blog"
+                className="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold transition-all shadow-lg shadow-purple-900/40 hover:shadow-purple-900/60"
+              >
+                Explore the Blog →
+              </Link>
+              <Link
+                href="/categories"
+                className="flex items-center gap-2 px-6 py-2.5 rounded-lg border border-white/15 bg-white/5 hover:bg-white/10 text-white text-sm font-semibold transition-all"
+              >
+                Browse Topics
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════
-          FEATURED ARTICLE
-      ═══════════════════════════════════════════════════ */}
-      {featured && (
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
-            <span className="text-[11px] font-bold text-purple-400/80 uppercase tracking-[0.2em]">Latest Discovery</span>
-            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
-          </div>
-          <PostCard
-            post={featured}
-            category={featured.category_id ? categoryMap[featured.category_id] : null}
-            featured
-          />
-        </section>
-      )}
-
-      {/* ═══════════════════════════════════════════════════
-          RECENT ARTICLES GRID
-      ═══════════════════════════════════════════════════ */}
-      {recent.length > 0 && (
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 py-8 pb-20">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold text-white">Recent Articles</h2>
-            <Link href="/blog" className="text-sm text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-1">
-              View all <span className="text-lg leading-none">→</span>
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {recent.map((post) => (
-              <PostCard
-                key={post.id}
-                post={post}
-                category={post.category_id ? categoryMap[post.category_id] : null}
-              />
+      {/* ══════════════════════════════════════════════════
+          FEATURE STRIP — 4 pillars
+      ══════════════════════════════════════════════════ */}
+      <section className="border-b border-white/5 bg-[#060608]">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/5">
+            {[
+              { icon: "🔭", title: "Beginner Friendly", desc: "Clear explanations for all levels of learners." },
+              { icon: "⚛️", title: "Science Based", desc: "Trusted sources and proven science." },
+              { icon: "🪐", title: "Always Exploring", desc: "New articles regularly to fuel your curiosity." },
+              { icon: "🚀", title: "Learn & Discover", desc: "Topics, guides, and resources to keep you learning." },
+            ].map((item) => (
+              <div key={item.title} className="flex items-start gap-3 px-6 py-6">
+                <span className="text-2xl shrink-0 mt-0.5">{item.icon}</span>
+                <div>
+                  <p className="text-sm font-bold text-white mb-1">{item.title}</p>
+                  <p className="text-xs text-gray-600 leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
             ))}
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
-      {/* ═══════════════════════════════════════════════════
-          EMPTY STATE (no articles yet)
-      ═══════════════════════════════════════════════════ */}
-      {posts.length === 0 && (
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 py-24 text-center">
-          <div className="w-24 h-24 rounded-3xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mx-auto mb-8">
-            <span className="text-5xl">🌌</span>
-          </div>
-          <h2 className="text-3xl font-bold text-white mb-4">The Universe Awaits</h2>
-          <p className="text-gray-500 max-w-md mx-auto text-lg leading-relaxed">
-            Articles are being prepared right now. The first deep dive is coming soon.
-          </p>
-        </section>
-      )}
+      {/* ══════════════════════════════════════════════════
+          MAIN CONTENT — article grid + sidebar
+      ══════════════════════════════════════════════════ */}
+      <section className="max-w-7xl mx-auto px-6 sm:px-10 py-14">
+        <div className="flex flex-col lg:flex-row gap-10">
 
-      {/* ═══════════════════════════════════════════════════
-          CATEGORIES STRIP
-      ═══════════════════════════════════════════════════ */}
-      {categories.length > 0 && (
-        <section className="border-t border-white/5 bg-gradient-to-b from-transparent to-[#06060f]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
-            <h2 className="text-xl font-bold text-white mb-6">Explore by Topic</h2>
-            <div className="flex flex-wrap gap-2">
-              {categories.map((cat: Category) => (
-                <Link
-                  key={cat.id}
-                  href={`/categories/${cat.slug}`}
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-full border transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-                  style={{
-                    borderColor: `${cat.color}25`,
-                    background: `${cat.color}08`,
-                  }}
-                >
-                  <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: cat.color }} />
-                  <span className="text-sm font-medium" style={{ color: cat.color }}>{cat.name}</span>
-                </Link>
-              ))}
+          {/* ── Left: Articles ─────────────────────────── */}
+          <div className="flex-1 min-w-0">
+
+            {/* Latest Articles */}
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em]">Latest Articles</h2>
+              <Link href="/blog" className="text-xs text-purple-400 hover:text-purple-300 transition-colors font-medium">
+                View all articles →
+              </Link>
             </div>
+
+            {latestPosts.length === 0 ? (
+              <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-12 text-center">
+                <p className="text-4xl mb-4">🌌</p>
+                <p className="text-gray-500 text-sm">Articles are being prepared. Check back soon.</p>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-4 mb-12">
+                {latestPosts.map((post, i) => (
+                  <ArticleRow
+                    key={post.id}
+                    post={post}
+                    category={post.category_id ? categoryMap[post.category_id] : null}
+                    featured={i === 0}
+                  />
+                ))}
+              </div>
+            )}
+
+            {/* Explore the Universe */}
+            {morePosts.length > 0 && (
+              <>
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em]">Explore the Universe</h2>
+                  <Link href="/blog" className="text-xs text-purple-400 hover:text-purple-300 transition-colors font-medium">
+                    View all →
+                  </Link>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {morePosts.map((post) => (
+                    <PostCard
+                      key={post.id}
+                      post={post}
+                      category={post.category_id ? categoryMap[post.category_id] : null}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
           </div>
-        </section>
-      )}
+
+          {/* ── Right: Sidebar ─────────────────────────── */}
+          <aside className="w-full lg:w-72 shrink-0 flex flex-col gap-8">
+
+            {/* Popular Topics */}
+            <div>
+              <h3 className="text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em] mb-4">Popular Topics</h3>
+              <div className="flex flex-col gap-1">
+                {categories.slice(0, 6).map((cat: Category) => (
+                  <Link
+                    key={cat.id}
+                    href={`/categories/${cat.slug}`}
+                    className="flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-white/5 transition-all group"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: cat.color }} />
+                      <span className="text-sm text-gray-300 group-hover:text-white transition-colors">{cat.name}</span>
+                    </div>
+                    <span className="text-gray-700 group-hover:text-gray-500 transition-colors text-xs">→</span>
+                  </Link>
+                ))}
+                <Link
+                  href="/categories"
+                  className="flex items-center gap-1.5 px-3 py-2.5 text-xs text-purple-400 hover:text-purple-300 transition-colors font-medium mt-1"
+                >
+                  View all topics →
+                </Link>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="h-px bg-white/5" />
+
+            {/* About */}
+            <div>
+              <h3 className="text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em] mb-4">About NOVA Discovery</h3>
+              <p className="text-sm text-gray-500 leading-relaxed mb-4">
+                Our mission is to make astronomy accessible, engaging, and inspiring for everyone — powered by NOVA AI and reviewed by human.
+              </p>
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-purple-500/25 bg-purple-500/8 text-purple-400 hover:text-purple-300 hover:border-purple-500/40 text-xs font-semibold transition-all"
+              >
+                Learn more about us →
+              </Link>
+            </div>
+
+            {/* Divider */}
+            <div className="h-px bg-white/5" />
+
+            {/* Categories grid */}
+            <div>
+              <h3 className="text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em] mb-4">Browse by Category</h3>
+              <div className="grid grid-cols-2 gap-2">
+                {categories.slice(0, 4).map((cat: Category) => (
+                  <Link
+                    key={cat.id}
+                    href={`/categories/${cat.slug}`}
+                    className="rounded-xl p-3 border transition-all hover:bg-white/5 text-center"
+                    style={{ borderColor: `${cat.color}20`, background: `${cat.color}06` }}
+                  >
+                    <p className="text-xs font-semibold leading-tight" style={{ color: cat.color }}>{cat.name}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
     </div>
+  );
+}
+
+// ── ArticleRow — horizontal article card for the main feed ──
+
+function ArticleRow({
+  post,
+  category,
+  featured = false,
+}: {
+  post: Post;
+  category: Category | null;
+  featured?: boolean;
+}) {
+  const categoryColor = category?.color ?? "#8b5cf6";
+  const date = post.published_at
+    ? new Date(post.published_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
+    : "";
+  const readTime = post.word_count ? `${Math.max(1, Math.round(post.word_count / 200))} min read` : "";
+
+  return (
+    <Link href={`/blog/${post.slug}`} className="group block">
+      <article
+        className={`rounded-2xl border border-white/[0.07] hover:border-white/[0.14] transition-all duration-200 p-5 ${
+          featured ? "bg-gradient-to-r from-purple-950/20 to-transparent" : "bg-white/[0.02]"
+        }`}
+      >
+        {category && (
+          <span
+            className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.1em] mb-2.5"
+            style={{ color: categoryColor }}
+          >
+            {category.name}
+          </span>
+        )}
+        <h3 className={`font-bold text-white leading-snug mb-2 group-hover:text-purple-100 transition-colors ${featured ? "text-xl" : "text-base"}`}>
+          {post.title}
+        </h3>
+        {post.excerpt && (
+          <p className="text-sm text-gray-600 leading-relaxed mb-3 line-clamp-2">{post.excerpt}</p>
+        )}
+        <div className="flex items-center gap-3 text-[11px] text-gray-700">
+          {date && <span>{date}</span>}
+          {readTime && <><span>•</span><span>{readTime}</span></>}
+        </div>
+      </article>
+    </Link>
   );
 }

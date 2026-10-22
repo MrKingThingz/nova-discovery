@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { Post, Category } from "@/lib/supabase";
 import { formatDate, readTime } from "@/lib/presentation";
-import { TopicArt } from "@/components/TopicArt";
+import { ArticleImage } from "@/components/ArticleImage";
 
 export function PostCard({
   post,
@@ -20,7 +20,7 @@ export function PostCard({
       href={`/blog/${post.slug}`}
       className={`post-card${featured ? " post-featured" : ""}`}
     >
-      <TopicArt slug={category?.slug} />
+      <ArticleImage image={post.featured_image} topic={category?.slug} card />
       <div className="post-card-content">
         <div className="card-overline">
           <span className="topic-label">{category?.name ?? "Discovery"}</span>

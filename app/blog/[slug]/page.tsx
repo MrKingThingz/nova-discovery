@@ -3,6 +3,8 @@ import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, BookOpen } from "lucide-react";
 import { getPostBySlug, getCategories, getRelatedPosts } from "@/lib/supabase";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
+import { ArticleImage } from "@/components/ArticleImage";
+import { validArticleImage } from "@/lib/articleImage";
 import { PostCard } from "@/components/PostCard";
 import { formatDate, readTime } from "@/lib/presentation";
 
@@ -22,6 +24,7 @@ export async function generateMetadata({ params }: Props) {
           description: post.excerpt ?? undefined,
           type: "article",
           publishedTime: post.published_at ?? undefined,
+          ...(validArticleImage(post.featured_image) ? { images: [{ url: post.featured_image.url, alt: post.featured_image.alt }] } : {}),
         },
       }
     : { title: "Article Not Found" };
@@ -76,6 +79,7 @@ export default async function ArticlePage({ params }: Props) {
             </div>
           </div>
         </header>
+        <ArticleImage image={post.featured_image} />
         <article>
           <MarkdownRenderer content={post.content} />
         </article>

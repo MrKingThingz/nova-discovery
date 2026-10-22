@@ -1940,3 +1940,10 @@
     transform: none;
   }
 }
+
+/* Article media shares the existing card proportions on every screen. */
+.article-image { margin: 0 0 40px; }
+.article-image-frame { position: relative; aspect-ratio: 3 / 2; overflow: hidden; border-radius: 20px; background: #151526; }
+.article-image figcaption { display: flex; flex-direction: column; gap: 5px; margin-top: 12px; color: #a9a4b8; font-size: 12px; line-height: 1.6; }
+.article-image figcaption a { color: #c7b5ff; text-decoration: underline; text-underline-offset: 3px; }
+.image-kind { position: absolute; bottom: 12px; left: 12px; border: 1px solid #ffffff30; border-radius: 99px; background: #0a0a16cc; color: #eee7ff; padding: 5px 9px; font-size: 10px; }

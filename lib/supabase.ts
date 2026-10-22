@@ -1,6 +1,7 @@
 // Reads published astronomy content from the shared Supabase database.
 // Uses the public anon key — only reads publicly published posts.
 
+import type { ArticleImage } from "@/lib/articleImage";
 import { createClient } from "@supabase/supabase-js";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
@@ -25,6 +26,7 @@ export interface Post {
   published_at: string | null;
   created_at: string;
   featured_image_query: string | null;
+  featured_image?: ArticleImage | null;
 }
 
 export interface Category {
@@ -111,7 +113,7 @@ export async function getRelatedPosts(
   let query = supabase
     .from("astronomy_posts")
     .select(
-      "id, title, slug, excerpt, published_at, category_id, tags, word_count",
+      "id, title, slug, excerpt, published_at, category_id, tags, word_count, featured_image",
     )
     .eq("status", "published")
     .neq("id", postId)
@@ -138,7 +140,7 @@ export async function getArticlePage({
   const pageSize = 12;
   let query = supabase
     .from("astronomy_posts")
-    .select("id,title,slug,excerpt,category_id,tags,word_count,published_at", {
+    .select("id,title,slug,excerpt,category_id,tags,word_count,published_at,featured_image", {
       count: "exact",
     })
     .eq("status", "published");

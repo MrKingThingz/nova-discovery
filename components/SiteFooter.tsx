@@ -1,55 +1,54 @@
-import React from "react";
 import Link from "next/link";
-import { Telescope } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import { BrandMark } from "@/components/BrandMark";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-white/5 bg-[#040407] mt-16">
-      <div className="site-container py-20">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-
-          {/* Brand col */}
-          <div className="md:col-span-2 flex flex-col gap-4">
-            <Link href="/" className="flex items-center gap-2.5 w-fit">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-700 flex items-center justify-center">
-                <Telescope size={15} className="text-white" />
-              </div>
-              <div className="flex flex-col leading-none">
-                <span className="text-sm font-bold text-white">NOVA Discovery</span>
-                <span className="text-[9px] text-purple-400/60 tracking-[0.15em] uppercase">novadiscovery.space</span>
-              </div>
+    <footer className="site-footer">
+      <div className="site-container">
+        <div className="footer-top">
+          <div>
+            <Link href="/" className="brand">
+              <BrandMark />
+              <span>
+                <strong>
+                  NOVA<span className="brand-dot">.</span>
+                </strong>
+                <small>DISCOVERY</small>
+              </span>
             </Link>
-            <p className="text-sm text-gray-600 leading-relaxed max-w-xs">
-              AI-powered deep dives into the universe — black holes, Mars missions, space-time, and the science that bends the mind.
+            <p>
+              For the endlessly curious.
+              <br />A closer look at the universe we call home.
             </p>
           </div>
-
-          {/* Explore */}
-          <div className="flex flex-col gap-3">
-            <p className="text-[10px] font-bold text-gray-700 uppercase tracking-[0.15em]">Explore</p>
-            {([["/", "Home"], ["/blog", "Blog"], ["/categories", "Topics"], ["/about", "About"]] as [string, string][]).map(([href, label]) => (
-              <Link key={href} href={href} className="text-sm text-gray-500 hover:text-white transition-colors">{label}</Link>
-            ))}
+          <div className="footer-links">
+            <span className="eyebrow">KEEP EXPLORING</span>
+            <Link href="/blog">
+              All articles <ArrowUpRight size={15} />
+            </Link>
+            <Link href="/categories">
+              Explore topics <ArrowUpRight size={15} />
+            </Link>
+            <Link href="/about">
+              Our story <ArrowUpRight size={15} />
+            </Link>
           </div>
-
-          {/* Topics */}
-          <div className="flex flex-col gap-3">
-            <p className="text-[10px] font-bold text-gray-700 uppercase tracking-[0.15em]">Topics</p>
-            {([
-              ["/categories/black-holes", "Black Holes"],
-              ["/categories/mars-beyond", "Mars & Beyond"],
-              ["/categories/space-time", "Space-Time"],
-              ["/categories/missions", "Missions"],
-              ["/categories/discoveries", "Discoveries"],
-            ] as [string, string][]).map(([href, label]) => (
-              <Link key={href} href={href} className="text-sm text-gray-500 hover:text-white transition-colors">{label}</Link>
-            ))}
+          <div className="footer-note">
+            <span className="eyebrow">CURIOSITY, WITH CONTEXT</span>
+            <p>
+              Researched and written with NOVA AI.
+              <br />
+              Reviewed by a human before publication.
+            </p>
+            <Link className="text-link" href="/about#our-process">
+              How we create our articles <ArrowUpRight size={15} />
+            </Link>
           </div>
         </div>
-
-        <div className="mt-12 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-gray-700">© {new Date().getFullYear()} NOVA Discovery — Articles written by NOVA AI, reviewed by human.</p>
-          <p className="text-xs text-gray-800">novadiscovery.space</p>
+        <div className="footer-bottom">
+          <span>© {new Date().getFullYear()} NOVA Discovery</span>
+          <span>Science. Curiosity. Wonder.</span>
         </div>
       </div>
     </footer>

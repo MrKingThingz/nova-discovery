@@ -1,61 +1,60 @@
-import React from "react";
 import Link from "next/link";
-import { getCategories, getPublishedPosts } from "@/lib/supabase";
-import type { Category, Post } from "@/lib/supabase";
+import { ArrowUpRight, Compass } from "lucide-react";
+import { getCategories } from "@/lib/supabase";
+import { TopicArt } from "@/components/TopicArt";
 
 export const revalidate = 60;
-
 export const metadata = {
-  title: "Categories",
-  description: "Browse astronomy articles by topic.",
+  title: "Explore Topics",
+  description:
+    "From our nearest neighbors to the farthest reaches of space. Find your next astronomy read.",
 };
-
 export default async function CategoriesPage() {
-  const [categories, posts] = await Promise.all([
-    getCategories(),
-    getPublishedPosts(200),
-  ]);
-
-  const countByCategory = posts.reduce<Record<string, number>>((acc, p: Post) => {
-    if (p.category_id) acc[p.category_id] = (acc[p.category_id] ?? 0) + 1;
-    return acc;
-  }, {});
-
+  const categories = await getCategories();
   return (
-    <div className="min-h-screen pt-28 pb-20">
-      <div className="site-container">
-        <div className="mb-12">
-          <h1 className="text-4xl font-bold text-white mb-3">Topics</h1>
-          <p className="text-gray-400">Explore the universe by subject</p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {categories.map((cat: Category) => {
-            const count = countByCategory[cat.id] ?? 0;
-            return (
-              <Link
-                key={cat.id}
-                href={`/categories/${cat.slug}`}
-                className="group rounded-2xl border p-6 transition-all hover:bg-white/[0.03]"
-                style={{ borderColor: `${cat.color}20`, background: `${cat.color}06` }}
-              >
-                <div className="flex items-center gap-2.5 mb-3">
-                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: cat.color }} />
-                  <h2 className="text-base font-bold text-white group-hover:text-purple-100 transition-colors">
-                    {cat.name}
-                  </h2>
-                </div>
-                {cat.description && (
-                  <p className="text-sm text-gray-500 leading-relaxed mb-4">{cat.description}</p>
-                )}
-                <p className="text-xs font-medium" style={{ color: cat.color }}>
-                  {count} article{count !== 1 ? "s" : ""}
-                </p>
-              </Link>
-            );
-          })}
-        </div>
+    <div className="site-container page-content">
+      <header className="page-heading">
+        <p className="eyebrow">FOLLOW YOUR CURIOSITY</p>
+        <h1>Where will you go next?</h1>
+        <p>
+          From our nearest neighbors to the farthest reaches of space. There’s
+          always another question to explore.
+        </p>
+      </header>
+      <div className="category-grid">
+        {categories.map((cat, i) => (
+          <Link
+            className="category-card"
+            href={`/categories/${cat.slug}`}
+            key={cat.id}
+          >
+            <TopicArt slug={cat.slug} />
+            <div className="category-card-copy">
+              <span className="topic-number">
+                {String(i + 1).padStart(2, "0")} / EXPLORE
+              </span>
+              <h2>{cat.name}</h2>
+              <p>
+                {cat.description ||
+                  `Discover the science, stories, and questions behind ${cat.name.toLowerCase()}.`}
+              </p>
+              <span className="text-link">
+                Explore topic <ArrowUpRight size={17} />
+              </span>
+            </div>
+          </Link>
+        ))}
       </div>
+      {!categories.length && (
+        <div className="empty-state">
+          <Compass size={32} />
+          <h2>More to explore soon.</h2>
+          <p>Our topics will appear here as the journal grows.</p>
+          <Link href="/blog" className="button button-secondary">
+            Browse the journal
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

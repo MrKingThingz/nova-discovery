@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NOVA Discovery
 
-## Getting Started
+NOVA Discovery is the public astronomy journal at `novadiscovery.space`, built with Next.js, React, and Supabase. The site reads published content from the existing NOVA astronomy workflow; it does not create or edit articles.
 
-First, run the development server:
+## Local development
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Install dependencies with `npm ci`. Supply `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` in `.env.local`, then run:
+
+```sh
+npm run dev -- --port 3004
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Port 3004 keeps the blog separate from the personal NOVA app on port 3000. For a production preview, run `npm run build`, followed by `npm run start -- --port 3004`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Content and layout
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/globals.css` contains the shared design and responsive layouts. Base resets stay inside the Tailwind base layer.
+- `components/PostCard.tsx` and `components/TopicArt.tsx` provide article cards and decorative astronomy artwork.
+- `components/MarkdownRenderer.tsx` renders Markdown with lists and tables, without executing raw HTML. Sources and videos are displayed by the article page.
+- `/blog` supports title/summary search (`q`), topic filtering (`topic`), and pagination (`page`). Queries only return published articles.
+- `lib/supabase.ts` reads `astronomy_posts` and `astronomy_categories`. An empty public feed can mean no published content is available to the public database role; check that separately from the page layout.
 
-## Learn More
+## Home Screen app
 
-To learn more about Next.js, take a look at the following resources:
+`app/manifest.ts` defines the installable app. `app/layout.tsx` supplies viewport, theme, and Apple Home Screen metadata. The mobile interface uses bottom navigation and safe-area spacing.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Use **Get the app** for browser installation or iPhone/iPad instructions. Installation on the live site requires HTTPS. The app currently requires an internet connection; it does not cache articles for offline reading or send notifications.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+To regenerate the SVG, PNG, Apple, and maskable app icons after changing their design:
 
-## Deploy on Vercel
+```sh
+npm run icons
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Check `npm run build` before publishing. Visual changes should also be checked at phone, tablet, and desktop widths. Deployments continue through the existing GitHub/hosting setup.

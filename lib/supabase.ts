@@ -45,7 +45,10 @@ export async function getPublishedPosts(limit = 20): Promise<Post[]> {
     .order("published_at", { ascending: false })
     .limit(limit);
 
-  if (error) { console.error("getPublishedPosts:", error.message); return []; }
+  if (error) {
+    console.error("getPublishedPosts:", error.message);
+    return [];
+  }
   return (data ?? []) as Post[];
 }
 
@@ -61,7 +64,10 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   return data as Post;
 }
 
-export async function getPostsByCategory(categoryId: string, limit = 12): Promise<Post[]> {
+export async function getPostsByCategory(
+  categoryId: string,
+  limit = 12,
+): Promise<Post[]> {
   const { data, error } = await supabase
     .from("astronomy_posts")
     .select("*")
@@ -84,7 +90,9 @@ export async function getCategories(): Promise<Category[]> {
   return (data ?? []) as Category[];
 }
 
-export async function getCategoryBySlug(slug: string): Promise<Category | null> {
+export async function getCategoryBySlug(
+  slug: string,
+): Promise<Category | null> {
   const { data, error } = await supabase
     .from("astronomy_categories")
     .select("*")
@@ -95,10 +103,16 @@ export async function getCategoryBySlug(slug: string): Promise<Category | null> 
   return data as Category;
 }
 
-export async function getRelatedPosts(postId: string, categoryId: string | null, limit = 3): Promise<Post[]> {
+export async function getRelatedPosts(
+  postId: string,
+  categoryId: string | null,
+  limit = 3,
+): Promise<Post[]> {
   let query = supabase
     .from("astronomy_posts")
-    .select("id, title, slug, excerpt, published_at, category_id, tags")
+    .select(
+      "id, title, slug, excerpt, published_at, category_id, tags, word_count",
+    )
     .eq("status", "published")
     .neq("id", postId)
     .order("published_at", { ascending: false })
@@ -108,4 +122,45 @@ export async function getRelatedPosts(postId: string, categoryId: string | null,
 
   const { data } = await query;
   return (data ?? []) as Post[];
+}
+
+export async function getArticlePage({
+  search = "",
+  categoryId,
+  page = 1,
+}: {
+  search?: string;
+  categoryId?: string;
+  page?: number;
+}) {
+  const { normalizeSearch } = await import("@/lib/articleSearch");
+  const term = normalizeSearch(search);
+  const pageSize = 12;
+  let query = supabase
+    .from("astronomy_posts")
+    .select("id,title,slug,excerpt,category_id,tags,word_count,published_at", {
+      count: "exact",
+    })
+    .eq("status", "published");
+  if (term) query = query.or(`title.ilike.%${term}%,excerpt.ilike.%${term}%`);
+  if (categoryId) query = query.eq("category_id", categoryId);
+  const { data, error, count } = await query
+    .order("published_at", { ascending: false })
+    .order("id")
+    .range((page - 1) * pageSize, page * pageSize - 1);
+  if (error)
+    return {
+      posts: [] as Post[],
+      total: 0,
+      pages: 0,
+      unavailable: error.code !== "PGRST103",
+      outOfRange: error.code === "PGRST103",
+    };
+  return {
+    posts: (data ?? []) as Post[],
+    total: count ?? 0,
+    pages: Math.ceil((count ?? 0) / pageSize),
+    unavailable: false,
+    outOfRange: false,
+  };
 }

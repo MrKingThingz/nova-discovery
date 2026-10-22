@@ -1,82 +1,96 @@
-import React from "react";
 import Link from "next/link";
-import { Telescope } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { InstallApp } from "@/components/InstallApp";
 
 export const metadata = {
-  title: "About",
-  description: "About NOVA Discovery — the AI-powered astronomy publication.",
+  title: "Our Story",
+  description:
+    "An astronomy journal for curious people. Meet NOVA Discovery and learn how we create and review our articles.",
 };
-
 export default function AboutPage() {
   return (
-    <div className="min-h-screen pt-28 pb-20">
-      <div className="max-w-3xl mx-auto site-container">
-        {/* Header */}
-        <div className="flex items-center gap-4 mb-10">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-600 to-indigo-700 flex items-center justify-center shadow-xl shadow-purple-900/40">
-            <Telescope size={24} className="text-white" />
-          </div>
-          <div>
-            <h1 className="text-3xl font-bold text-white">About NOVA Discovery</h1>
-            <p className="text-purple-400 text-sm mt-0.5">novadiscovery.space</p>
-          </div>
+    <div className="site-container page-content">
+      <header className="page-heading about-heading">
+        <p className="eyebrow">HELLO, FELLOW EXPLORER.</p>
+        <h1>
+          Curiosity is a<br />
+          <em>very human thing.</em>
+        </h1>
+        <p>
+          The universe has a way of making everyday life feel a little bigger.
+          We created NOVA Discovery to share that feeling.
+        </p>
+      </header>
+      <div className="about-grid">
+        <div className="about-story">
+          <h2>
+            Big questions.
+            <br />A place to start.
+          </h2>
+          <p>
+            What happens inside a black hole? Could there be life beyond Earth?
+            How do we see galaxies billions of years in the past?
+          </p>
+          <p>
+            You don’t need a physics degree to ask great questions. Our articles
+            make space science approachable, with context, clear explanations,
+            and sources you can explore for yourself.
+          </p>
+          <p>
+            NOVA Discovery is an independent astronomy journal created with
+            NOVA, a personal AI assistant. AI helps with research and writing. A
+            human reviews each article before it reaches the site.
+          </p>
+          <Link className="button button-primary" href="/blog">
+            Find your next discovery <ArrowRight size={17} />
+          </Link>
         </div>
-
-        <div className="flex flex-col gap-6 text-gray-400 leading-relaxed">
-          <p className="text-lg text-gray-300">
-            NOVA Discovery is an astronomy and space science publication powered by artificial intelligence —
-            specifically by NOVA, a personal AI assistant built to explore and explain the universe.
-          </p>
-
-          <p>
-            The universe is stranger and more interesting than most people realize. Black holes don&apos;t just
-            pull things in — they warp time itself. Mars isn&apos;t just a red dot in the sky — it&apos;s the next
-            world humanity will set foot on. Light from distant galaxies took billions of years to reach
-            us — we&apos;re literally looking back in time every time we look up.
-          </p>
-
-          <p>
-            NOVA Discovery exists to make that wonder accessible. Every article is researched from
-            current sources, written to explain the actual science — not just the headlines — and
-            published only after a human review. Nothing goes live without approval.
-          </p>
-
-          <div className="rounded-2xl bg-purple-500/5 border border-purple-500/15 p-6">
-            <h2 className="text-white font-semibold text-lg mb-3">How It Works</h2>
-            <div className="flex flex-col gap-3">
-              {[
-                ["Discovery", "NOVA searches for recent space news and discoveries from NASA, ESA, research journals, and science publications."],
-                ["Research", "For each topic, NOVA conducts in-depth research before writing — pulling from multiple sources to understand the science."],
-                ["Writing", "NOVA writes a full article explaining the topic accessibly — the background, the science, and why it matters."],
-                ["Review", "Every article is reviewed and approved by a human before publishing. NOVA doesn't publish anything autonomously."],
-              ].map(([step, desc]) => (
-                <div key={step} className="flex gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-2 shrink-0" />
-                  <div>
-                    <span className="text-white font-medium text-sm">{step}: </span>
-                    <span className="text-sm text-gray-500">{desc}</span>
-                  </div>
-                </div>
-              ))}
+        <section className="process-panel" id="our-process">
+          <p className="eyebrow">BEHIND EVERY ARTICLE</p>
+          <h2>
+            From a question
+            <br />
+            to a clearer picture.
+          </h2>
+          {[
+            [
+              "Discover",
+              "We look for interesting questions, space news, and new research.",
+            ],
+            [
+              "Research",
+              "NOVA gathers context and source material to explain the science behind the story.",
+            ],
+            [
+              "Write",
+              "The story comes together in clear, accessible language, with links to its sources.",
+            ],
+            [
+              "Review",
+              "A human reviews and approves the article before publication. AI can make mistakes; we encourage readers to explore the sources too.",
+            ],
+          ].map(([title, copy], i) => (
+            <div className="process-step" key={title}>
+              <span>0{i + 1}</span>
+              <div>
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </div>
             </div>
-          </div>
-
-          <p>
-            The site covers everything: black holes and their event horizons, the physics of time dilation
-            and general relativity, current Mars missions, exoplanet discoveries, JWST imagery, and the
-            ongoing human story of reaching toward the stars.
-          </p>
-
-          <div className="pt-4">
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold transition-all shadow-lg shadow-purple-900/40"
-            >
-              Start Reading →
-            </Link>
-          </div>
-        </div>
+          ))}
+        </section>
       </div>
+      <section className="about-install">
+        <div>
+          <p className="eyebrow">KEEP LOOKING UP</p>
+          <h2>Make a little room for wonder.</h2>
+          <p>
+            Add NOVA Discovery to your phone for an easier way to keep
+            exploring.
+          </p>
+        </div>
+        <InstallApp />
+      </section>
     </div>
   );
 }

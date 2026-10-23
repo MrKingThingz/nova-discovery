@@ -1,0 +1,66 @@
+[
+  {
+    "slug": "mars-beyond",
+    "name": "Mars & Beyond",
+    "prompt": "Use case: stylized-concept. Asset type: wide landscape category thumbnail for NOVA Discovery, a premium astronomy journal with a dark navy and violet website. Create a single polished cinematic editorial space illustration, richly detailed, understated and credible, not a UI screenshot or a collage. Landscape 3:2 composition that also crops well to a wide 2:1 thumbnail, primary subject centered with breathing room, true black/navy space, delicate stars, restrained lavender highlights paired with natural subject colors, clear silhouette and strong small-thumbnail readability. No text, no labels, no watermark, no logos, no border. Artistic illustration, not an exact scientific diagram. Subject: the red planet Mars floating in space, large rusty orange globe with detailed canyon and crater textures, softly sunlit left hemisphere and dark terminator, tiny thin rim light, small glimmering stars behind. No rings, no Earth, no spacecraft.",
+    "generator": "Built-in image_gen",
+    "kind": "AI editorial illustration",
+    "file": "public/images/categories/mars-beyond.webp"
+  },
+  {
+    "slug": "black-holes",
+    "name": "Black Holes",
+    "prompt": "Use case: stylized-concept. Asset type: wide landscape category thumbnail for NOVA Discovery, a premium astronomy journal with a dark navy and violet website. Create a single polished cinematic editorial space illustration, richly detailed, understated and credible, not a UI screenshot or a collage. Landscape 3:2 composition that also crops well to a wide 2:1 thumbnail, primary subject centered with breathing room, true black/navy space, delicate stars, restrained lavender highlights paired with natural subject colors, clear silhouette and strong small-thumbnail readability. No text, no labels, no watermark, no logos, no border. Artistic illustration, not an exact scientific diagram. Subject: a black hole with a perfectly black circular center and a glowing ivory-gold accretion disk whose gravitationally lensed light arcs above and below it. A dramatic but clean isolated silhouette, restrained violet glow receding into deep black, no planets or spacecraft.",
+    "generator": "Built-in image_gen",
+    "kind": "AI editorial illustration",
+    "file": "public/images/categories/black-holes.webp"
+  },
+  {
+    "slug": "space-time",
+    "name": "Space-Time",
+    "prompt": "Use case: stylized-concept. Asset type: wide landscape category thumbnail for NOVA Discovery, a premium astronomy journal with a dark navy and violet website. Create a single polished cinematic editorial space illustration, richly detailed, understated and credible, not a UI screenshot or a collage. Landscape 3:2 composition that also crops well to a wide 2:1 thumbnail, primary subject centered with breathing room, true black/navy space, delicate stars, restrained lavender highlights paired with natural subject colors, clear silhouette and strong small-thumbnail readability. No text, no labels, no watermark, no logos, no border. Artistic illustration, not an exact scientific diagram. Subject: a conceptual visualization of curved space-time: a fine luminous lavender spacetime grid flowing smoothly through deep navy space, curving around a small blue-white star near the center, with gently bent light paths. Airy elegant flowing geometry with depth. No black-hole disk, no planet globe, no text or math labels.",
+    "generator": "Built-in image_gen",
+    "kind": "AI editorial illustration",
+    "file": "public/images/categories/space-time.webp"
+  },
+  {
+    "slug": "missions",
+    "name": "Missions",
+    "prompt": "Use case: stylized-concept. Asset type: wide landscape category thumbnail for NOVA Discovery, a premium astronomy journal with a dark navy and violet website. Create a single polished cinematic editorial space illustration, richly detailed, understated and credible, not a UI screenshot or a collage. Landscape 3:2 composition that also crops well to a wide 2:1 thumbnail, primary subject centered with breathing room, true black/navy space, delicate stars, restrained lavender highlights paired with natural subject colors, clear silhouette and strong small-thumbnail readability. No text, no labels, no watermark, no logos, no border. Artistic illustration, not an exact scientific diagram. Subject: a detailed uncrewed deep-space robotic probe with gold thermal foil, one large white radio dish and two dark-blue solar arrays, floating above the curved blue atmospheric limb of Earth. Three-quarter view, the dish and spacecraft are the clear central subject, realistic engineering-inspired design without branding. Distant black space and delicate stars.",
+    "generator": "Built-in image_gen",
+    "kind": "AI editorial illustration",
+    "file": "public/images/categories/missions.webp"
+  },
+  {
+    "slug": "discoveries",
+    "name": "Discoveries",
+    "prompt": "Use case: stylized-concept. Asset type: wide landscape category thumbnail for NOVA Discovery, a premium astronomy journal with a dark navy and violet website. Create a single polished cinematic editorial space illustration, richly detailed, understated and credible, not a UI screenshot or a collage. Landscape 3:2 composition that also crops well to a wide 2:1 thumbnail, primary subject centered with breathing room, true black/navy space, delicate stars, restrained lavender highlights paired with natural subject colors, clear silhouette and strong small-thumbnail readability. No text, no labels, no watermark, no logos, no border. Artistic illustration, not an exact scientific diagram. Subject: a mysterious newly discovered exoplanet, a teal atmospheric crescent with subtle cloud bands, illuminated by a distant amber star just beyond its edge; a small secondary moon lower right, against a delicate purple nebula in the distance. Central exoplanet silhouette, sense of scientific discovery and wonder. No spacecraft, no magnifying glass.",
+    "generator": "Built-in image_gen",
+    "kind": "AI editorial illustration",
+    "file": "public/images/categories/discoveries.webp"
+  },
+  {
+    "slug": "solar-system",
+    "name": "The Solar System",
+    "prompt": "Use case: stylized-concept. Asset type: wide landscape category thumbnail for NOVA Discovery, a premium astronomy journal with a dark navy and violet website. Create a single polished cinematic editorial space illustration, richly detailed, understated and credible, not a UI screenshot or a collage. Landscape 3:2 composition that also crops well to a wide 2:1 thumbnail, primary subject centered with breathing room, true black/navy space, delicate stars, restrained lavender highlights paired with natural subject colors, clear silhouette and strong small-thumbnail readability. No text, no labels, no watermark, no logos, no border. Artistic illustration, not an exact scientific diagram. Subject: Saturn shown in three-quarter view with its finely detailed broad rings, pale gold atmosphere and subtle cloud bands, small bright Sun far in the upper left and one tiny softly lit moon in background. Rings fit comfortably inside the frame and remain clear when cropped. Natural rich color, no decorative orbit lines or labels.",
+    "generator": "Built-in image_gen",
+    "kind": "AI editorial illustration",
+    "file": "public/images/categories/solar-system.webp"
+  },
+  {
+    "slug": "deep-universe",
+    "name": "Deep Universe",
+    "prompt": "Use case: stylized-concept. Asset type: wide landscape category thumbnail for NOVA Discovery, a premium astronomy journal with a dark navy and violet website. Create a single polished cinematic editorial space illustration, richly detailed, understated and credible, not a UI screenshot or a collage. Landscape 3:2 composition that also crops well to a wide 2:1 thumbnail, primary subject centered with breathing room, true black/navy space, delicate stars, restrained lavender highlights paired with natural subject colors, clear silhouette and strong small-thumbnail readability. No text, no labels, no watermark, no logos, no border. Artistic illustration, not an exact scientific diagram. Subject: a grand spiral galaxy viewed at a slight angle, luminous warm ivory core, sweeping deep violet and blue spiral arms and realistic dust lanes, surrounded by faint tiny distant galaxies and fine stars. Wide elegant swirling composition with the core near center, no local planet or spacecraft.",
+    "generator": "Built-in image_gen",
+    "kind": "AI editorial illustration",
+    "file": "public/images/categories/deep-universe.webp"
+  },
+  {
+    "slug": "human-spaceflight",
+    "name": "Human Spaceflight",
+    "prompt": "Use case: stylized-concept. Asset type: wide landscape category thumbnail for NOVA Discovery, a premium astronomy journal with a dark navy and violet website. Create a single polished cinematic editorial space illustration, richly detailed, understated and credible, not a UI screenshot or a collage. Landscape 3:2 composition that also crops well to a wide 2:1 thumbnail, primary subject centered with breathing room, true black/navy space, delicate stars, restrained lavender highlights paired with natural subject colors, clear silhouette and strong small-thumbnail readability. No text, no labels, no watermark, no logos, no border. Artistic illustration, not an exact scientific diagram. Subject: a single astronaut in a white EVA spacesuit, chest and helmet clearly visible, floating over Earth's blue curved horizon. Gold reflective visor without a visible face, suit details and a gently curving safety tether, three-quarter view with clear silhouette. No flags, no logos, no extra people, restrained rim light and deep space background.",
+    "generator": "Built-in image_gen",
+    "kind": "AI editorial illustration",
+    "file": "public/images/categories/human-spaceflight.webp"
+  }
+]

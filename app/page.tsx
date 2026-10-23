@@ -11,7 +11,7 @@ import { getPublishedPosts, getCategories } from "@/lib/supabase";
 import { PostCard } from "@/components/PostCard";
 import { InstallApp } from "@/components/InstallApp";
 import { BrandMark } from "@/components/BrandMark";
-import { TopicArt } from "@/components/TopicArt";
+import { CategoryImage } from "@/components/CategoryImage";
 
 export const revalidate = 60;
 export default async function HomePage() {
@@ -144,7 +144,7 @@ export default async function HomePage() {
                   className="topic-tile"
                   key={cat.id}
                 >
-                  <TopicArt slug={cat.slug} small />
+                  <CategoryImage slug={cat.slug} small />
                   <div>
                     <span className="topic-number">0{i + 1}</span>
                     <h3>{cat.name}</h3>

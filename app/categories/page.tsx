@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, Compass } from "lucide-react";
 import { getCategories } from "@/lib/supabase";
-import { TopicArt } from "@/components/TopicArt";
+import { CategoryImage } from "@/components/CategoryImage";
 
 export const revalidate = 60;
 export const metadata = {
@@ -28,7 +28,7 @@ export default async function CategoriesPage() {
             href={`/categories/${cat.slug}`}
             key={cat.id}
           >
-            <TopicArt slug={cat.slug} />
+            <CategoryImage slug={cat.slug} />
             <div className="category-card-copy">
               <span className="topic-number">
                 {String(i + 1).padStart(2, "0")} / EXPLORE

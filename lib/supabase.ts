@@ -27,6 +27,7 @@ export interface Post {
   created_at: string;
   featured_image_query: string | null;
   featured_image?: ArticleImage | null;
+  narration?: unknown;
 }
 
 export interface Category {

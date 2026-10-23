@@ -3,6 +3,8 @@ import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, BookOpen } from "lucide-react";
 import { getPostBySlug, getCategories, getRelatedPosts } from "@/lib/supabase";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
+import { ArticleAudio } from "@/components/ArticleAudio";
+import { publishedNarration } from "@/lib/articleNarration";
 import { ArticleImage } from "@/components/ArticleImage";
 import { validArticleImage } from "@/lib/articleImage";
 import { PostCard } from "@/components/PostCard";
@@ -35,6 +37,7 @@ export default async function ArticlePage({ params }: Props) {
     getCategories(),
   ]);
   if (!post) notFound();
+  const narration = publishedNarration(post);
   const categoryMap = Object.fromEntries(categories.map((c) => [c.id, c]));
   const category = post.category_id ? categoryMap[post.category_id] : null;
   const related = await getRelatedPosts(post.id, post.category_id, 3);
@@ -79,6 +82,7 @@ export default async function ArticlePage({ params }: Props) {
             </div>
           </div>
         </header>
+        {narration && <ArticleAudio key={narration.path} slug={post.slug} title={post.title} duration={narration.duration} />}
         <ArticleImage image={post.featured_image} />
         <article>
           <MarkdownRenderer content={post.content} />
